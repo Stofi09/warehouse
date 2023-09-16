@@ -2,6 +2,9 @@ package com.warehouse.warehouse.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "market_user")
 public class MarketUser {
@@ -19,6 +22,17 @@ public class MarketUser {
 
     @Column(name = "email", nullable = false, unique = true, length = 350)
     private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Address> addresses = new ArrayList<>();
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 
     public String getEmail() {
         return email;
