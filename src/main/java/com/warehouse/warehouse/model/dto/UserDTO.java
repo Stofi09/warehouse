@@ -1,7 +1,10 @@
 package com.warehouse.warehouse.model.dto;
 
+import jakarta.validation.constraints.Email;
+
 public class UserDTO {
     private String name;
+    @Email(message = "Invalid email format")
     private String email;
     private String password;
     public UserDTO(){}

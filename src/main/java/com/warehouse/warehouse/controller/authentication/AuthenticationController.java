@@ -3,11 +3,12 @@ package com.warehouse.warehouse.controller.authentication;
 import com.warehouse.warehouse.model.dto.ResponseDTO;
 import com.warehouse.warehouse.model.dto.UserDTO;
 import com.warehouse.warehouse.service.UserService;
-import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth/v1")
@@ -20,7 +21,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<String> register(@Valid @RequestBody UserDTO userDTO) {
         ResponseDTO response = userService.registerUser(userDTO);
         return new ResponseEntity<>(response.getMessage(), response.getStatus());
     }
