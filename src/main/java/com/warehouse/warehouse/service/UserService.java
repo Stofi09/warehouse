@@ -5,7 +5,6 @@ import com.warehouse.warehouse.model.dto.LoginDTO;
 import com.warehouse.warehouse.model.dto.ResponseDTO;
 import com.warehouse.warehouse.model.dto.UserDTO;
 import com.warehouse.warehouse.repository.UserRepository;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +60,9 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public Optional<MarketUser> findByUserName(String name){
+        return userRepository.findByNameIgnoreCase(name);
     }
 }
