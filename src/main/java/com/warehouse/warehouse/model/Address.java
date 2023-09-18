@@ -1,5 +1,6 @@
 package com.warehouse.warehouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +23,7 @@ public class Address {
     @Column(name = "country", nullable = false)
     private String country;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private MarketUser user;
