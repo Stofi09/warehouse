@@ -42,8 +42,8 @@ public class UserService {
 
     private Optional<MarketUser> checkForExistingUser(UserDTO userDTO) {
         // Check if name already exists in the database
-        if(userRepository.findByName(userDTO.getName()).isPresent()){
-            return userRepository.findByName(userDTO.getName());
+        if(userRepository.findByNameIgnoreCase(userDTO.getName()).isPresent()){
+            return userRepository.findByNameIgnoreCase(userDTO.getName());
         }
         // Check if email already exists in the database
         if(userRepository.findByEmail(userDTO.getEmail()).isPresent()){
@@ -53,7 +53,7 @@ public class UserService {
     }
 
     public String loginUser(LoginDTO loginDTO){
-        Optional<MarketUser> existingUser = userRepository.findByName(loginDTO.getName());
+        Optional<MarketUser> existingUser = userRepository.findByNameIgnoreCase(loginDTO.getName());
         if(existingUser.isPresent()){
             if(encryptionService.verifyPassword(loginDTO.getPassword(),existingUser.get().getPassword())){
                 return   jwtService.generateJWT(existingUser.get());
