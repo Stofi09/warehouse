@@ -12,7 +12,7 @@ import java.util.Date;
 
 
 @Service
-public class JWTService {
+public class JWTService implements IJWTService{
 
     @Value("${jwt.algorithm.key}")
     private String algorithmKey;
