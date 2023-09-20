@@ -27,12 +27,14 @@ public class SecurityWebConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterBefore(jwtRequestFilter, AuthorizationFilter.class)
                 .authorizeHttpRequests( auth -> auth
-                        .requestMatchers("/auth/v1/login").permitAll()
+                        .requestMatchers("/auth/v1/login","/auth/v1/register" ,"/auth/v1/verify").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(withDefaults())
                 .build();
     }
+
+
 
 }

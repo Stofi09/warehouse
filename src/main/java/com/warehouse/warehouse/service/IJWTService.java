@@ -7,4 +7,5 @@ public interface IJWTService {
 
     public String generateJWT(MarketUser user);
     String getUserName(String token);
+    String generateVerificationJWT(MarketUser user);
 }

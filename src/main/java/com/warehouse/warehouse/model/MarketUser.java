@@ -29,6 +29,29 @@ public class MarketUser {
     @JsonIgnore
     private List<Address> addresses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id desc")
+    private List<VerificationToken> verificationTokens = new ArrayList<>();
+
+    @Column(name = "email_verified", nullable = false)
+    private Boolean emailVerified = false;
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public List<VerificationToken> getVerificationTokens() {
+        return verificationTokens;
+    }
+
+    public void setVerificationTokens(List<VerificationToken> verificationTokens) {
+        this.verificationTokens = verificationTokens;
+    }
+
     public List<Address> getAddresses() {
         return addresses;
     }
